@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'redcarpet'
+require 'impress_renderer'
+
+include Redcarpet
+m = Markdown.new(ImpressRenderer, :autolink => true)
+
+def help
+  puts "USAGE: mdpress [filename.md]"
+  exit
+end
+
+help if ARGV.size == 0 || ["-h", "--help"].include?(ARGV[0])
+
+puts m.render(File.open(ARGV[0]).read)
