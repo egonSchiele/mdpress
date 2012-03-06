@@ -89,7 +89,7 @@ If you make your own stylesheets, send me a pull request and I'll add them to th
 To contribute a new stylesheet, follow these steps:
 
 1. Fork this repo.
-2. Place your new stylesheet in lib/impress_css/[your stylesheet name].css
+2. Place your new stylesheet in `lib/impress_css/[your stylesheet name].css`
 3. Send me a pull request!
 
 # License (MIT)
