@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'redcarpet'
 require 'fileutils'
-require 'lib/impress_renderer'
+require 'impress_renderer'
 require 'trollop'
 
 opts = Trollop::options do
