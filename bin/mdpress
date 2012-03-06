@@ -5,16 +5,30 @@ require 'fileutils'
 require 'impress_renderer'
 require 'trollop'
 
+def log(x)
+  puts "\033[94m" + x + "\033[0m"
+end
+
+def base_dir
+  File.dirname(__FILE__) + "/../lib/"
+end
+
 opts = Trollop::options do
   banner <<-EOS
 Usage: mdpress [filename] [options]
 where [options] are:
 EOS
   opt :automatic, "Keeps running and automatically updates the presentation to reflect changes to markdown file."
+  opt :stylesheet,  "Specify what stylesheet to use.", :default => "default"
+  opt :list, "List all available stylesheets."
 end
 
-def log(x)
-  puts "\033[94m" + x + "\033[0m"
+if opts[:list]
+  log "Available stylesheets:"
+  Dir.glob(base_dir + "impress_css/*").each do |file|
+    puts File.basename(file, ".css")
+  end
+  exit
 end
 
 def render
@@ -50,11 +64,14 @@ def render
   f.close
 end
 
-def base_dir
-  File.dirname(__FILE__) + "/../lib/"
-end
+STYLESHEET = base_dir + "impress_css/#{opts[:stylesheet]}.css"
 
 raise Trollop::HelpNeeded if ARGV.empty? # show help screen
+unless File.exist?(STYLESHEET)
+  puts opts[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
+  exit
+end
+
 FILENAME = ARGV[0]
 
 log "making directory"
@@ -66,6 +83,7 @@ render
 log "copying files"
 FileUtils.cp_r(base_dir + "js", DIRNAME)
 FileUtils.cp_r(base_dir + "css", DIRNAME)
+FileUtils.cp(STYLESHEET, DIRNAME + "/css/style.css")
 
 def auto
   while true
