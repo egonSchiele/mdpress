@@ -1,2 +1,3 @@
 - decouple font / header from renderer, right now Open Sans will get included for every stylesheet.
 - make more stylesheets.
+- refactor, code looks ugly right now.

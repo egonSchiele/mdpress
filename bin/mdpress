@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'redcarpet'
 require 'fileutils'
-require 'lib/impress_renderer'
+require 'impress_renderer'
 require 'trollop'
 require 'tempfile'
 require 'launchy'
@@ -79,6 +79,7 @@ if opts[:run]
   file = ARGV[0]
   tmp = Tempfile.new("mdpress")
   tmp.write(File.read(file))
+  tmp.flush
   FILENAME = tmp.path
   DIRNAME = FILENAME + "_dir"
 else
