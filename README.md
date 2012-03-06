@@ -2,7 +2,7 @@
 
 This is a tool that converts markdown files to presentations using impress.
 
-# Advantages
+## Advantages
 
 - dead simple, works with any markdown file
 - comes with a beautiful default stylesheet + more styles (more styles TBD) ... no need to write your own
@@ -13,17 +13,17 @@ This is a tool that converts markdown files to presentations using impress.
 - presentations are tiny and easy to distribute
 - presentations are easy to read as a plain text file
 
-# Install
+## Install
 
 	gem install mdpress
 
-# Usage
+## Usage
 
 	mdpress [filename.md]
 
 This creates a directory named `filename`. Start the presentation by opening up `index.html`.
 
-# Quickstart (writing your first presentation!)
+## Quickstart (writing your first presentation!)
 
 	# Chicken Chicken Chicken
 	## By Chicken
@@ -38,7 +38,7 @@ Save that as `test.md` and then use `mdpress test.md` to convert it to a present
 `mdpress` uses [Redcarpet](https://github.com/tanoku/redcarpet), so it can parse whatever markdown you throw at it.
 We use the horizonal rule, `---`, to indicate the start of a new slide.
 
-## Getting Fancy: adding transformations
+### Getting Fancy: adding transformations
 
 So far the slide transitions haven't been that exciting. Let's spice them up.
 Below the `---`, type:
@@ -55,7 +55,7 @@ We could have written
 
 To make it scale as well as swipe.
 
-# Possible Attributes
+## Possible Attributes
 
 - `data-x`, `data-y`, `data-z`: positioning
 - `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate`: rotation (`data-rotate` and `data-rotate-z` are exactly the same)
@@ -66,7 +66,7 @@ See [impress.js](https://github.com/bartaz/impress.js/blob/master/index.html) fo
 
 Adding this syntax to Markdown feels like kind of a hack, but it's concise. I'm open to suggestions for something better.
 
-# Auto-update
+## Auto-update
 
 Earlier, our workflow involved having to delete the old presentation and recompile every time we made an edit. The better choice is to use the automatic mode:
 
@@ -74,7 +74,7 @@ Earlier, our workflow involved having to delete the old presentation and recompi
 
 Now, `mdpress` will keep running and check for updates to your markdown file. It will automatically recompile the presentation for you, so you can seamlessly edit your markdown and view your changes instantly.
 
-# Stylesheets
+## Stylesheets
 
 `mdpress` comes with a default stylesheet, plus a few more. See the full list of available stylesheets with
 
@@ -86,7 +86,7 @@ Or specify a stylesheet to use with
 
 If you make your own stylesheets, send me a pull request and I'll add them to the list! See below.
 
-# Running a presentation
+## Running a presentation
 
 Someone emailed you a `mdpress` presentation. Now you want to **just run it**? Sure:
 
@@ -94,11 +94,7 @@ Someone emailed you a `mdpress` presentation. Now you want to **just run it**? S
 
 That will automatically compile the presentation and open it in a browser window.
 
-# I want the typewriter sound to play when I change slides!
-
-Go away.
-
-# Contributing
+## Contributing
 
 To contribute a new stylesheet, follow these steps:
 
@@ -106,7 +102,11 @@ To contribute a new stylesheet, follow these steps:
 2. Place your new stylesheet in `lib/impress_css/[your stylesheet name].css`
 3. Send me a pull request!
 
-# License (MIT)
+## I want the typewriter sound to play when I change slides!
+
+Go away.
+
+## License (MIT)
 
 Copyright (C) 2012 by Aditya Bhargava
 

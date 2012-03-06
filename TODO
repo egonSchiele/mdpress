@@ -1,3 +1,8 @@
 - decouple font / header from renderer, right now Open Sans will get included for every stylesheet.
 - make more stylesheets.
 - refactor, code looks ugly right now.
+- make sure designs look good in all browsers
+- add tests?
+- add online service to host presentations?
+- use documentup?
+- change h1's to mean new slides (or see how documentup does it)
