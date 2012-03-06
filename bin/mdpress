@@ -2,13 +2,23 @@
 require 'rubygems'
 require 'redcarpet'
 require 'fileutils'
-require 'impress_renderer'
+require 'lib/impress_renderer'
+require 'trollop'
+
+opts = Trollop::options do
+  banner <<-EOS
+Usage: mdpress [filename] [options]
+where [options] are:
+EOS
+  opt :automatic, "Keeps running and automatically updates the presentation to reflect changes to markdown file."
+end
 
 def log(x)
   puts "\033[94m" + x + "\033[0m"
 end
 
-def render(text)
+def render
+  text = File.read(FILENAME)
   # ugly hack to get attributes for impress.js
   # TODO make this pretty
   lines = text.split("\n")
@@ -32,36 +42,44 @@ def render(text)
 
   # now use those attributes and render the file
   include Redcarpet
-  ImpressRenderer.set_attrs attrs
+  ImpressRenderer.init_with_attrs attrs
   m = Markdown.new(ImpressRenderer, :autolink => true)
-  m.render(text)
-end
-
-
-def help
-  puts "USAGE: mdpress [filename.md]"
-  exit
+  log "rendering presentation"
+  f = File.open(DIRNAME + "/index.html", "w+")
+  f.write(m.render(text))
+  f.close
 end
 
 def base_dir
   File.dirname(__FILE__) + "/../lib/"
 end
 
-help if ARGV.size == 0 || ["-h", "--help"].include?(ARGV[0])
-
-filename = ARGV[0]
+raise Trollop::HelpNeeded if ARGV.empty? # show help screen
+FILENAME = ARGV[0]
 
 log "making directory"
+DIRNAME = File.basename(FILENAME, File.extname(FILENAME))
+Dir.mkdir(DIRNAME)
 
-dirname = File.basename(filename, File.extname(filename))
-Dir.mkdir(dirname)
-
-
-log "rendering presentation"
-File.open(dirname + "/index.html", "w+").write(render(File.read(filename)))
+render
 
 log "copying files"
-FileUtils.cp_r(base_dir + "js", dirname)
-FileUtils.cp_r(base_dir + "css", dirname)
+FileUtils.cp_r(base_dir + "js", DIRNAME)
+FileUtils.cp_r(base_dir + "css", DIRNAME)
 
-log "done."
+def auto
+  while true
+    sleep 2
+    if FileUtils.uptodate?(FILENAME, DIRNAME + "/index.html")
+      log "updating from #{FILENAME}"
+      render
+    end
+  end
+end
+
+if opts[:automatic]
+  log "waiting for updates..."
+  auto
+else
+  log "done."
+end

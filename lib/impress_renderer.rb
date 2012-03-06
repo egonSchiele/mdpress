@@ -3,8 +3,9 @@ class ImpressRenderer < Redcarpet::Render::HTML
   @@attrs = []
   @@current = 0
 
-  def self.set_attrs att
+  def self.init_with_attrs att
     @@attrs = att
+    @@current = 0
   end
 
   def hrule
