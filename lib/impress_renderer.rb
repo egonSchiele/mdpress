@@ -1,8 +1,17 @@
 require 'redcarpet'
 class ImpressRenderer < Redcarpet::Render::HTML
+  @@attrs = []
+  @@current = 0
+
+  def self.set_attrs att
+    @@attrs = att
+  end
+
   def hrule
+    # this is how we later inject attributes into pages. what an awful hack.
+    @@current += 1
     %{</div>
-      <div class="step">
+      <div class='step' #{@@attrs[@@current]}>
     }
   end
 
@@ -28,7 +37,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
 
   <body onload="prettyPrint()">
     <div id="impress">
-    <div class="step">
+    <div class='step' #{@@attrs[0]}>
     }
   end
 

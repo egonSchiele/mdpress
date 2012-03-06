@@ -1,16 +1,67 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'redcarpet'
-require '../lib/impress_renderer'
+require 'fileutils'
+require 'impress_renderer'
 
-include Redcarpet
-m = Markdown.new(ImpressRenderer, :autolink => true)
+def log(x)
+  puts "\033[94m" + x + "\033[0m"
+end
+
+def render(text)
+  # ugly hack to get attributes for impress.js
+  # TODO make this pretty
+  lines = text.split("\n")
+  lines.drop_while { |l| l =~ /^\s*$/ }
+
+  attrs = [""]
+  
+  new_lines = []
+  lines.each_with_index do |line, i|
+    if line =~ /^=(.*)$/ && (i == 0 || lines[i-1] =~ /^(-\s*){3,}$/)
+      line =~ /^=(.*)$/
+      attrs[attrs.size-1] = $~.to_a[1]
+      next
+    elsif line =~ /^(-\s*){3,}$/
+      attrs << ""
+    end
+    new_lines << line
+  end
+
+  text = new_lines.join("\n")
+
+  # now use those attributes and render the file
+  include Redcarpet
+  ImpressRenderer.set_attrs attrs
+  m = Markdown.new(ImpressRenderer, :autolink => true)
+  m.render(text)
+end
+
 
 def help
   puts "USAGE: mdpress [filename.md]"
   exit
 end
 
+def base_dir
+  File.dirname(__FILE__) + "/../lib/"
+end
+
 help if ARGV.size == 0 || ["-h", "--help"].include?(ARGV[0])
 
-puts m.render(File.open(ARGV[0]).read)
+filename = ARGV[0]
+
+log "making directory"
+
+dirname = File.basename(filename, File.extname(filename))
+Dir.mkdir(dirname)
+
+
+log "rendering presentation"
+File.open(dirname + "/index.html", "w+").write(render(File.read(filename)))
+
+log "copying files"
+FileUtils.cp_r(base_dir + "js", dirname)
+FileUtils.cp_r(base_dir + "css", dirname)
+
+log "done."
