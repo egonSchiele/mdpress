@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
 	# TODO add any dependencies
 	s.add_dependency("redcarpet")
 	s.add_dependency("trollop")
+	s.add_dependency("launchy")
 end

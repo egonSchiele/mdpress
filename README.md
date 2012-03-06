@@ -10,6 +10,8 @@ This is a tool that converts markdown files to presentations using impress.
 - comes with [prettify](http://code.google.com/p/google-code-prettify/) integrated, does code highlighting out of the box
 - has an auto-update mode; update your markdown file and mdpress will update your presentation automatically
 - quick install as a ruby gem
+- presentations are tiny and easy to distribute
+- presentations are easy to read as a plain text file
 
 # Install
 
@@ -83,6 +85,18 @@ Or specify a stylesheet to use with
 	mdpress -s [stylesheet]
 
 If you make your own stylesheets, send me a pull request and I'll add them to the list! See below.
+
+# Running a presentation
+
+Someone emailed you a `mdpress` presentation. Now you want to **just run it**? Sure:
+
+	mdpress -r [filename.md]
+
+That will automatically compile the presentation and open it in a browser window.
+
+# I want the typewriter sound to play when I change slides!
+
+Go away.
 
 # Contributing
 
