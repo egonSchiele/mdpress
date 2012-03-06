@@ -6,14 +6,27 @@ class ImpressRenderer < Redcarpet::Render::HTML
     }
   end
 
+  def block_code code, lang
+    "<pre><code class='prettyprint'>#{code}</code></pre>"
+  end
+
+  def codespan code
+    "<code class='inline prettyprint'>#{code}</code>"
+  end
+
   def doc_header
     %{
 <html>
   <head>
-    <link href="style.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>    
+    <!-- Code Prettifier: -->
+<link href="css/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/prettify.js"></script>    
   </head>
 
-  <body>
+  <body onload="prettyPrint()">
     <div id="impress">
     <div class="step">
     }
@@ -22,7 +35,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
   def doc_footer
     %{
       </div>
-    <script src="impress.js"></script>
+    <script src="js/impress.js"></script>
     <script>impress();</script>
   </body>
 </html>

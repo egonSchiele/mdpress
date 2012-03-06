@@ -20,4 +20,5 @@ Write a Markdown file. Any time you create a horizonal rule `---`, you're signal
 
 - add some way to specify data-x, data-y etc through markdown?
 - add some way to automatically pull impress.js etc?
-- some way to pipe to this instead of reading from a file? (ruby has a shortcut for this)
+- something that automatically updates the presentation as the markdown script changes.
+- something for positioning

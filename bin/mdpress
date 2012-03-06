@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'redcarpet'
-require 'impress_renderer'
+require '../lib/impress_renderer'
 
 include Redcarpet
 m = Markdown.new(ImpressRenderer, :autolink => true)

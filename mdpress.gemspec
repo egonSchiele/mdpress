@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
     s.description = "Build impress.js presentations from markdown files."
     s.author      = "Aditya Bhargava"
     s.email       = "bluemangroupie@gmail.com"
-    s.files       = ["lib/impress_renderer.rb", "bin/mdpress"] # + Dir["bin/templates/*"]
+    s.files       = ["lib/impress_renderer.rb", "bin/mdpress"] + Dir["lib/css/*"] + Dir["lib/js/*"]
     s.homepage    = "https://github.com/egonSchiele/mdpress"
     s.executables = ["mdpress"]
 	# TODO add any dependencies
