@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
     s.executables = ["mdpress"]
 	# TODO add any dependencies
 	s.add_dependency("redcarpet")
+	s.add_dependency("trollop")
 end
