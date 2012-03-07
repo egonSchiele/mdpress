@@ -8,30 +8,18 @@ require 'tempfile'
 require 'launchy'
 
 def log(x)
-  puts "\033[94m" + x + "\033[0m"
+  puts "\033[94m" + x + "\033[0m" if OPTS[:verbose]
 end
 
 def base_dir
   File.dirname(__FILE__) + "/../lib/"
 end
 
-opts = Trollop::options do
-  banner <<-EOS
-Usage: mdpress [filename] [options]
-where [options] are:
-EOS
-  opt :automatic, "Keeps running and automatically updates the presentation to reflect changes to markdown file."
-  opt :stylesheet,  "Specify what stylesheet to use.", :default => "default"
-  opt :list, "List all available stylesheets."
-  opt :run, "Run presentation (automatically compiles to a tmp directory and opens in a browser window)"
-end
-
-if opts[:list]
+def list_available_stylesheets
   log "Available stylesheets:"
   Dir.glob(base_dir + "impress_css/*").each do |file|
     puts File.basename(file, ".css")
   end
-  exit
 end
 
 def render
@@ -60,6 +48,12 @@ def render
   # now use those attributes and render the file
   include Redcarpet
   ImpressRenderer.init_with_attrs attrs
+  if File.exist?(STYLESHEET_HEAD)
+    ImpressRenderer.set_head(File.read(STYLESHEET_HEAD))
+  else
+    ImpressRenderer.set_head("")
+  end
+
   m = Markdown.new(ImpressRenderer, :autolink => true)
   log "rendering presentation"
   f = File.open(DIRNAME + "/index.html", "w+")
@@ -67,15 +61,34 @@ def render
   f.close
 end
 
-STYLESHEET = base_dir + "impress_css/#{opts[:stylesheet]}.css"
+OPTS = Trollop::options do
+  banner <<-EOS
+Usage: mdpress [filename] [options]
+where [options] are:
+EOS
+  opt :automatic, "Keeps running and automatically updates the presentation to reflect changes to markdown file."
+  opt :stylesheet,  "Specify what stylesheet to use.", :default => "default"
+  opt :list, "List all available stylesheets."
+  opt :run, "Run presentation (automatically compiles to a tmp directory and opens in a browser window)"
+  opt :verbose, "Be verbose."
+end
 
 raise Trollop::HelpNeeded if ARGV.empty? # show help screen
+
+if OPTS[:list]
+  list_available_stylesheets
+end
+
+
+STYLESHEET = base_dir + "impress_css/#{OPTS[:stylesheet]}.css"
+STYLESHEET_HEAD = base_dir + "impress_css/#{OPTS[:stylesheet]}.html"
+
 unless File.exist?(STYLESHEET)
-  puts opts[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
+  puts OPTS[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
   exit
 end
 
-if opts[:run]
+if OPTS[:run]
   file = ARGV[0]
   tmp = Tempfile.new("mdpress")
   tmp.write(File.read(file))
@@ -87,8 +100,15 @@ else
   DIRNAME = File.basename(FILENAME, File.extname(FILENAME))
 end
 
-log "making directory"
-Dir.mkdir(DIRNAME)
+if File.exist?(DIRNAME)
+  unless File.directory?(DIRNAME)
+    puts "please delete the file: #{DIRNAME} before continuing."
+    exit
+  end
+else
+  log "making directory"
+  Dir.mkdir(DIRNAME)
+end
 
 render
 
@@ -107,10 +127,10 @@ def auto
   end
 end
 
-if opts[:automatic]
+if OPTS[:automatic]
   log "waiting for updates..."
   auto
-elsif opts[:run]
+elsif OPTS[:run]
   log "opening in browser."
   Launchy.open(DIRNAME + "/index.html", :application => :browser)
 else

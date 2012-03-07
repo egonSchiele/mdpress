@@ -26,6 +26,14 @@ body {
 
 .step:not(.active) { opacity: 0.0; }
 
+strong {
+  font-weight: 800;
+}
+
+em {
+  font-style: italic;
+}
+
 h1, h2 {
   //font-family: 'Raleway', serif;
   font-weight: normal;

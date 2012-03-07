@@ -2,10 +2,15 @@ require 'redcarpet'
 class ImpressRenderer < Redcarpet::Render::HTML
   @@attrs = []
   @@current = 0
+  @@head = ""
 
   def self.init_with_attrs att
     @@attrs = att
     @@current = 0
+  end
+
+  def self.set_head head
+    @@head = head
   end
 
   def hrule
@@ -30,10 +35,10 @@ class ImpressRenderer < Redcarpet::Render::HTML
   <head>
     <link href="css/reset.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>    
     <!-- Code Prettifier: -->
 <link href="css/prettify.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="js/prettify.js"></script>    
+<script type="text/javascript" src="js/prettify.js"></script>
+#{@@head}
   </head>
 
   <body onload="prettyPrint()">
