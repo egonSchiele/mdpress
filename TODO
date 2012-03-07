@@ -5,3 +5,5 @@
 - add online service to host presentations?
 - change h1's to mean new slides (or see how documentup does it)
 - add option to render html file only, not update styles etc.
+- some way to update stylesheets without re-installing the gem?
+- some way to add classes to slides? you can just do class='soandso' but that could be documented better
