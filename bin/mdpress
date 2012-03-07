@@ -17,7 +17,7 @@ end
 
 def list_available_stylesheets
   log "Available stylesheets:"
-  Dir.glob(base_dir + "impress_css/*").each do |file|
+  Dir.glob(base_dir + "impress_css/*.css").each do |file|
     puts File.basename(file, ".css")
   end
 end
@@ -73,12 +73,12 @@ EOS
   opt :verbose, "Be verbose."
 end
 
-raise Trollop::HelpNeeded if ARGV.empty? # show help screen
-
 if OPTS[:list]
   list_available_stylesheets
+  exit
 end
 
+Trollop::die("no file specified") if ARGV.empty? # show help screen
 
 STYLESHEET = base_dir + "impress_css/#{OPTS[:stylesheet]}.css"
 STYLESHEET_HEAD = base_dir + "impress_css/#{OPTS[:stylesheet]}.html"
