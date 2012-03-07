@@ -41,7 +41,7 @@ h1, h2 {
 
 h1 {
   font-size: 120px;
-  margin: 40px 0;
+  margin: 20px 0;
   line-height: 130px;
 }
 
@@ -50,7 +50,7 @@ h2 {
   letter-spacing: .1em;
   text-transform: uppercase;
   line-height: 72px;
-  margin: 20px 0 40px 0;
+  margin: 10px 0;
 }
 
 .light {
@@ -63,6 +63,10 @@ blockquote {
     font-weight: 300;
     font-style: italic;
     line-height: 1.4;
+    margin: 20px 0;
+    padding: 10px 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
 }
 
 a, a:hover, a:visited {
@@ -79,10 +83,13 @@ p {
   line-height: 60px;
 }
 
-ul, ol {
-  margin: 20px 0;
+ol{
+  margin: 20px 0 20px 70px;
 }
 
+ul {
+  margin: 20px 0 20px 50px;
+}
 
 
 li {
@@ -90,18 +97,6 @@ li {
   line-height: 40px;
 }
 
-pre code.prettyprint {
-  padding: 12px 18px;
-  margin: 40px 0;
-  float: left;
-  font-family: "Courier New", "Courier", monospace;
-  font-size: 30px;
-  line-height: 30px;
-}
+a {
 
-code.inline {
-  float: none;
-  display: inline;
-  padding: 0;
-  margin: 0;
 }

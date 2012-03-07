@@ -34,10 +34,10 @@ class ImpressRenderer < Redcarpet::Render::HTML
 <html>
   <head>
     <link href="css/reset.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
     <!-- Code Prettifier: -->
 <link href="css/prettify.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/prettify.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
 #{@@head}
   </head>
 

@@ -25,3 +25,18 @@ code.prettyprint{
 	.atn,.typ{color:#404}
 	.atv{color:#060}
 }
+
+pre code.prettyprint {
+  padding: 12px 18px;
+  margin: 40px 0;
+  float: left;
+  font-family: "Courier New", "Courier", monospace;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+code.inline {
+  float: none;
+  font-family: "Courier New", "Courier", monospace;
+  display: inline;
+}

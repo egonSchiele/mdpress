@@ -34,12 +34,23 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
 }
-ol, ul {
-    list-style: none;
+ol{
+  margin: 20px 0 20px 70px;
 }
+
+ul {
+  margin: 20px 0 20px 50px;
+}
+
 blockquote, q {
-    quotes: none;
+  border-left: 10px solid #BBB;
+  padding-left: 10px;
 }
+
+blockquote p {
+  line-height: 60px;
+}
+
 blockquote:before, blockquote:after,
 q:before, q:after {
     content: '';
@@ -73,10 +84,10 @@ i, em { font-style: italic}
 a {
     color: inherit;
     text-decoration: none;
-    padding: 0 0.1em;
-    background: rgba(255,255,255,0.5);
-    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
-    border-radius: 0.2em;
+    padding: 0 7px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: #C9E7EA;
     
     -webkit-transition: 0.5s;
     -moz-transition:    0.5s;
@@ -86,7 +97,7 @@ a {
 }
 
 a:hover {
-    background: rgba(255,255,255,1);
+    background: #86D6EA;  
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
@@ -109,7 +120,6 @@ body     { pointer-events: none; }
     font-family: 'PT Serif', georgia, serif;
 
     font-size: 48px;
-    line-height: 1.5;
 }
 
 /* fade out inactive slides */
@@ -131,7 +141,7 @@ body     { pointer-events: none; }
 h1 {
   font-size: 120px;
   line-height: 120px;
-  margin: 20px 0;
+  margin: 0 0 20px 0;
   width: 100%;
 }
 
@@ -161,18 +171,6 @@ h1 {
     letter-spacing: -1px;
 }
 
-.step q {
-    display: block;
-    font-size: 50px;
-    line-height: 72px;
-
-    margin-top: 100px;
-}
-
-.step q strong {
-    white-space: nowrap;
-}
-
 p {
   font-size: 48px;
   line-height: 72px;
@@ -180,11 +178,21 @@ p {
 
 li {
   font-size: 48px;
-  line-height: 48px;
+  line-height: 60px;
 }
 
 h2 {
-  font-size: 60px;
-  font-weight: bold;
-  padding: 10px 0;
+  font-size: 72px;
+  padding: 20px 0;
+  line-height: 72px;
+  color: #0DADD6;
+}
+
+code.prettyprint{
+	background-color: #888;
+}
+
+code.inline {
+  padding: 5px 10px;
+  margin: -5px 0 0 0;
 }
