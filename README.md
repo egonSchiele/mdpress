@@ -5,6 +5,7 @@ This is a tool that converts markdown files to presentations using impress.
 # Example
 
 [This presentation](http://egonschiele.github.com/mdpress/default) was created from [this markdown file](https://raw.github.com/egonSchiele/mdpress/master/examples/demo.md).
+
 [This presentation](http://egonschiele.github.com/mdpress/impress) was created from the same markdown file and a different stylesheet using `mdpress -s [stylesheet name]`.
 
 
