@@ -22,7 +22,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
   end
 
   def block_code code, lang
-    "<pre><code class='prettyprint'>#{code}</code></pre>"
+    "<pre><code class='prettyprint #{lang}'>#{code}</code></pre>"
   end
 
   def codespan code
