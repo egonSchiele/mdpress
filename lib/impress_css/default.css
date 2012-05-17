@@ -4,7 +4,7 @@ body { font-family: 'Open Sans', sans-serif; line-height: .8; font-size: 45px; }
 body {
 	background: -moz-radial-gradient(50% 50%, farthest-side, #fff, #efefef);
 	background: -webkit-gradient(radial, 50% 50%, 250, 50% 50%, 750, from(#fff), to(#efefef));
-}  
+}
 
 .step {
     width: 1100px;
@@ -15,7 +15,7 @@ body {
     -ms-box-sizing:     border-box;
     -o-box-sizing:      border-box;
     box-sizing:         border-box;
-    
+
     -webkit-transition: opacity 1s;
     -moz-transition:    opacity 1s;
     -ms-transition:     opacity 1s;
@@ -99,4 +99,25 @@ li {
 
 a {
 
+}
+
+.fallback-message {
+	font-family: sans-serif;
+	line-height: 1.3;
+
+	width: 780px;
+	padding: 10px 10px 0;
+	margin: 20px auto;
+
+	border: 1px solid #E4C652;
+	border-radius: 10px;
+	background: #EEDC94;
+}
+
+.fallback-message p {
+	margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+	display: none;
 }

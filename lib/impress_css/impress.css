@@ -1,6 +1,6 @@
 /* the style used in impress.js's intro presentation */
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -14,8 +14,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -27,7 +27,7 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -65,7 +65,7 @@ table {
 
 body {
     font-family: 'PT Sans', sans-serif;
-    
+
     min-height: 740px;
 
     background: rgb(215, 215, 215);
@@ -88,7 +88,7 @@ a {
     -moz-border-radius: 10px;
     border-radius: 10px;
     background: #C9E7EA;
-    
+
     -webkit-transition: 0.5s;
     -moz-transition:    0.5s;
     -ms-transition:     0.5s;
@@ -97,7 +97,7 @@ a {
 }
 
 a:hover {
-    background: #86D6EA;  
+    background: #86D6EA;
     text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
 }
 
@@ -195,4 +195,24 @@ code.prettyprint{
 code.inline {
   padding: 5px 10px;
   margin: -5px 0 0 0;
+}
+.fallback-message {
+	font-family: sans-serif;
+	line-height: 1.3;
+
+	width: 780px;
+	padding: 10px 10px 0;
+	margin: 20px auto;
+
+	border: 1px solid #E4C652;
+	border-radius: 10px;
+	background: #EEDC94;
+}
+
+.fallback-message p {
+	margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+	display: none;
 }

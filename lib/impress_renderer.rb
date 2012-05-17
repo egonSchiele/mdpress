@@ -34,6 +34,11 @@ class ImpressRenderer < Redcarpet::Render::HTML
 <html>
   <head>
     <link href="css/reset.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="css/favicon.png" />
+    <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
     <!-- Code Prettifier: -->
 <link href="css/prettify.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/prettify.js"></script>
@@ -42,6 +47,10 @@ class ImpressRenderer < Redcarpet::Render::HTML
   </head>
 
   <body onload="prettyPrint()">
+  <div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
     <div id="impress">
     <div class='step' #{@@attrs[0]}>
     }
@@ -51,7 +60,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
     %{
       </div>
     <script src="js/impress.js"></script>
-    <script>impress();</script>
+    <script>impress().init();</script>
   </body>
 </html>
     }
