@@ -109,9 +109,9 @@ To contribute a new stylesheet, follow these steps:
 2. Place your new stylesheet in `lib/impress_css/[your stylesheet name].css`
 3. Send me a pull request!
 
-## I want the typewriter sound to play when I change slides!
+## Contributors
 
-Go away.
+- Mte90
 
 ## License (MIT)
 
