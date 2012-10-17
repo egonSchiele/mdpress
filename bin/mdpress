@@ -7,6 +7,8 @@ require 'trollop'
 require 'tempfile'
 require 'launchy'
 
+THEMES_DIRNAME = './themes/'
+
 def log(x)
   puts "\033[94m" + x + "\033[0m" if OPTS[:verbose]
 end
@@ -17,7 +19,12 @@ end
 
 def list_available_stylesheets
   log "Available stylesheets:"
+  log "mdpress stylesheets"
   Dir.glob(base_dir + "impress_css/*.css").each do |file|
+    puts File.basename(file, ".css")
+  end
+  log "Local stylesheets"
+  Dir.glob(THEMES_DIRNAME + "*.css").each do |file|
     puts File.basename(file, ".css")
   end
 end
@@ -80,14 +87,6 @@ end
 
 Trollop::die("no file specified") if ARGV.empty? # show help screen
 
-STYLESHEET = base_dir + "impress_css/#{OPTS[:stylesheet]}.css"
-STYLESHEET_HEAD = base_dir + "impress_css/#{OPTS[:stylesheet]}.html"
-
-unless File.exist?(STYLESHEET)
-  puts OPTS[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
-  exit
-end
-
 if OPTS[:run]
   file = ARGV[0]
   tmp = Tempfile.new("mdpress")
@@ -98,6 +97,19 @@ if OPTS[:run]
 else
   FILENAME = ARGV[0]
   DIRNAME = File.basename(FILENAME, File.extname(FILENAME))
+end
+
+if File.exist?(THEMES_DIRNAME + "#{OPTS[:stylesheet]}.css")
+    STYLESHEET = THEMES_DIRNAME + "#{OPTS[:stylesheet]}.css"
+    STYLESHEET_HEAD = THEMES_DIRNAME + "#{OPTS[:stylesheet]}.html"
+else 
+    STYLESHEET = base_dir + "impress_css/#{OPTS[:stylesheet]}.css"
+    STYLESHEET_HEAD = base_dir + "impress_css/#{OPTS[:stylesheet]}.html"
+end
+
+unless File.exist?(STYLESHEET)
+  puts OPTS[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
+  exit
 end
 
 if File.exist?(DIRNAME)
