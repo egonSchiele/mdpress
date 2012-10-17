@@ -30,7 +30,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
   end
 
   def doc_header
-    %{
+    %{<!DOCTYPE html>
 <html>
   <head>
     <link href="css/reset.css" rel="stylesheet" />
@@ -40,13 +40,15 @@ class ImpressRenderer < Redcarpet::Render::HTML
     <link rel="shortcut icon" href="css/favicon.png" />
     <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
     <!-- Code Prettifier: -->
-<link href="css/prettify.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="js/prettify.js"></script>
+<link href="css/highlight.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
     <link href="css/style.css" rel="stylesheet" />
 #{@@head}
   </head>
 
-  <body onload="prettyPrint()">
+  <body>
   <div class="fallback-message">
   <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
   <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>

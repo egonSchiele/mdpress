@@ -19,4 +19,8 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
-
+code {
+  font-size: 36px;
+  line-height: 40px;
+  font-family: "Courier New", monospace;
+}
