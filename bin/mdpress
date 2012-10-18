@@ -6,6 +6,7 @@ require 'impress_renderer'
 require 'trollop'
 require 'tempfile'
 require 'launchy'
+require 'httparty'
 
 THEMES_DIRNAME = './themes/'
 
@@ -78,6 +79,7 @@ EOS
   opt :list, "List all available stylesheets."
   opt :run, "Run presentation (automatically compiles to a tmp directory and opens in a browser window)"
   opt :verbose, "Be verbose."
+  opt :upload, "Upload presentation to mdpress.me"
 end
 
 if OPTS[:list]
@@ -86,6 +88,7 @@ if OPTS[:list]
 end
 
 Trollop::die("no file specified") if ARGV.empty? # show help screen
+
 
 if OPTS[:run]
   file = ARGV[0]
@@ -110,6 +113,16 @@ end
 unless File.exist?(STYLESHEET)
   puts OPTS[:stylesheet] + " is not a valid stylesheet. See available stylesheets with `mdpress -l`."
   exit
+end
+
+if OPTS[:upload]
+  res = HTTParty.post("http://mdpress.me/presentations", { :body => {
+    :content => File.read(ARGV[0]), 
+    :css => File.read(STYLESHEET),
+    :html => File.read(STYLESHEET_HEAD)
+  }
+  })
+  puts "presentation link: #{res.body}"
 end
 
 if File.exist?(DIRNAME)
