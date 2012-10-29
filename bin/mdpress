@@ -132,7 +132,7 @@ FileUtils.cp(STYLESHEET, DIRNAME + "/css/style.css")
 def auto
   while true
     sleep 2
-    if FileUtils.uptodate?(FILENAME, DIRNAME + "/index.html")
+    if FileUtils.uptodate?(FILENAME, [DIRNAME + "/index.html"])
       log "updating from #{FILENAME}"
       render
     end

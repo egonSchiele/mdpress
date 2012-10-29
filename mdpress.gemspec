@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
     s.name        = "mdpress"
-    s.version     = "0.0.10"
-    s.date        = "2012-10-17"
+    s.version     = "0.0.11"
+    s.date        = "2012-10-29"
     s.summary     = "Build impress.js presentations from markdown files."
     s.description = "Build impress.js presentations from markdown files."
     s.author      = "Aditya Bhargava"
