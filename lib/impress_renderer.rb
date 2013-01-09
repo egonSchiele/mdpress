@@ -4,9 +4,10 @@ class ImpressRenderer < Redcarpet::Render::HTML
   @@current = 0
   @@head = ""
 
-  def self.init_with_attrs att
-    @@attrs = att
+  def self.init_with_attrs _attrs, _opts
+    @@attrs = _attrs
     @@current = 0
+    @@opts = _opts
   end
 
   def self.set_head head
@@ -29,6 +30,19 @@ class ImpressRenderer < Redcarpet::Render::HTML
     "<code class='inline prettyprint'>#{code}</code>"
   end
 
+  def mathjax
+    if @@opts[:latex]
+      %{
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript"
+          src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+      }
+    end
+  end
+
   def doc_header
     %{<!DOCTYPE html>
 <html>
@@ -43,7 +57,7 @@ class ImpressRenderer < Redcarpet::Render::HTML
 <link href="css/highlight.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
+#{self.mathjax}
     <link href="css/style.css" rel="stylesheet" />
 #{@@head}
   </head>

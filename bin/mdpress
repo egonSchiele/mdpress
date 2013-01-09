@@ -29,7 +29,7 @@ def list_available_stylesheets
   end
 end
 
-def render
+def render opts
   text = File.read(FILENAME)
   # ugly hack to get attributes for impress.js
   # TODO make this pretty
@@ -54,7 +54,7 @@ def render
 
   # now use those attributes and render the file
   include Redcarpet
-  ImpressRenderer.init_with_attrs attrs
+  ImpressRenderer.init_with_attrs attrs, opts
   if File.exist?(STYLESHEET_HEAD)
     ImpressRenderer.set_head(File.read(STYLESHEET_HEAD))
   else
@@ -77,6 +77,7 @@ EOS
   opt :stylesheet,  "Specify what stylesheet to use.", :default => "default"
   opt :list, "List all available stylesheets."
   opt :run, "Run presentation (automatically compiles to a tmp directory and opens in a browser window)"
+  opt :latex, "Provide Latex support"
   opt :verbose, "Be verbose."
 end
 
@@ -122,7 +123,7 @@ else
   Dir.mkdir(DIRNAME)
 end
 
-render
+render OPTS
 
 log "copying files"
 FileUtils.cp_r(base_dir + "js", DIRNAME)

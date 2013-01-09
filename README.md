@@ -101,6 +101,14 @@ Someone emailed you a `mdpress` presentation. Now you want to **just run it**? S
 
 That will automatically compile the presentation and open it in a browser window.
 
+## Latex Support
+mdpress now has Latex support through [MathJax](http://www.mathjax.org/). To build your presentation with latex support, use the `--latex` flag.
+
+Put your latex code between a pair of `$$`'s, like this:
+
+    # Latex!
+    $$e^{\imath\pi} = -1$$
+
 ## Contributing
 
 To contribute a new stylesheet, follow these steps:
