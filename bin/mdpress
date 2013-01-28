@@ -135,7 +135,7 @@ def auto
     sleep 2
     if FileUtils.uptodate?(FILENAME, [DIRNAME + "/index.html"])
       log "updating from #{FILENAME}"
-      render
+      render OPTS
     end
   end
 end
