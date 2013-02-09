@@ -137,9 +137,11 @@ def auto
       log "updating from #{FILENAME}"
       render OPTS
     end
-    if FileUtils.uptodate?(STYLESHEET, [DIRNAME + "/css/style.css"])
-      log "updating stylesheet #{STYLESHEET}"
-      FileUtils.cp(STYLESHEET, DIRNAME + "/css/style.css")
+    if File.exist?(THEMES_DIRNAME + "#{OPTS[:stylesheet]}.css")
+      if FileUtils.uptodate?(STYLESHEET, [DIRNAME + "/css/style.css"])
+        log "updating stylesheet #{STYLESHEET}"
+        FileUtils.cp(STYLESHEET, DIRNAME + "/css/style.css")
+      end
     end
   end
 end
