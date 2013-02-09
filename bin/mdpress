@@ -138,7 +138,7 @@ def auto
       render OPTS
     end
     if FileUtils.uptodate?(STYLESHEET, [DIRNAME + "/css/style.css"])
-      log "updating stylesheet from #{STYLESHEET}"
+      log "updating stylesheet #{STYLESHEET}"
       FileUtils.cp(STYLESHEET, DIRNAME + "/css/style.css")
     end
   end
