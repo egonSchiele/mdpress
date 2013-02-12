@@ -93,6 +93,14 @@ Or specify a stylesheet to use with
 
 If you make your own stylesheets, send me a pull request and I'll add them to the list! See below.
 
+You can also create your own local theme: 
+
+1. Use the 'lib/impress_css/' files as a model to work from.
+2. Create a folder called 'themes' in the directory where your markdown
+   file is. Inside it put the [yourtheme].css and [yourtheme].html files
+3. Call mdpress -s [yourtheme] and mdpress will look for the two theme
+   files in themes/ matching that name.
+
 ## Running a presentation
 
 Someone emailed you a `mdpress` presentation. Now you want to **just run it**? Sure:
