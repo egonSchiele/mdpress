@@ -4,8 +4,8 @@ html {
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	line-height: .8;
-	font-size: 45px;
+	line-height: 40px;
+	font-size: 32px;
 }
 
 body {
@@ -71,6 +71,7 @@ h1 {
 }
 
 h2 {
+  font-size: 48px;
 	font-weight: 300;
 	letter-spacing: .1em;
 	text-transform: uppercase;
@@ -99,6 +100,11 @@ table {
 }
 .present a {
 	pointer-events: auto;	/* Enable Click on link */
+}
+
+code {
+  font-size: 30px;
+  line-height: 36px;
 }
 
 a {
@@ -133,9 +139,8 @@ ul {
 }
 
 li {
-	margin: 10px 0;
 	line-height: 50px;
-	list-style: none;
+	list-style: disc;
 }
 
 td,th {
