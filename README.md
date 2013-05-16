@@ -27,6 +27,7 @@ This is a tool that converts markdown files to presentations using impress.
 ## Usage
 
 	mdpress [filename.md]
+  mdpress [http://www.yourdomain.com/path/to/filename.md]
 
 This creates a directory named `filename`. Start the presentation by opening up `index.html`.
 

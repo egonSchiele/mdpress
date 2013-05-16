@@ -29,8 +29,22 @@ def list_available_stylesheets
   end
 end
 
+def readfile file
+  if file =~ /^http/
+    require 'httparty'
+    response = HTTParty.get(file)
+    if response
+      return response.body
+    else
+      raise "couldn't download url: #{file}"
+    end
+  else
+    return File.read(file)
+  end
+end
+
 def render opts
-  text = File.read(FILENAME)
+  text = readfile(FILENAME)
   # ugly hack to get attributes for impress.js
   # TODO make this pretty
   lines = text.split("\n")
@@ -91,7 +105,7 @@ Trollop::die("no file specified") if ARGV.empty? # show help screen
 if OPTS[:run]
   file = ARGV[0]
   tmp = Tempfile.new("mdpress")
-  tmp.write(File.read(file))
+  tmp.write(readfile(file))
   tmp.flush
   FILENAME = tmp.path
   DIRNAME = FILENAME + "_dir"
@@ -146,8 +160,12 @@ def auto
 end
 
 if OPTS[:automatic]
-  log "waiting for updates..."
-  auto
+  if ARGV[0] =~ /^http/
+    puts "Can't run in auto mode for remote files."
+  else
+    log "waiting for updates..."
+    auto
+  end
 elsif OPTS[:run]
   log "opening in browser."
   Launchy.open(DIRNAME + "/index.html", :application => :browser)
