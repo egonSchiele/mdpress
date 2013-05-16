@@ -118,6 +118,11 @@ Put your latex code between a pair of `$$`'s, like this:
     # Latex!
     $$e^{\imath\pi} = -1$$
 
+**Note**: you might run into conflicts between markdown and latex. For example, `_` means emphasize in markdown. So if you want subscripts, escape `_`:
+
+    $a_x$ # wrong, x will be italic
+    $a\_x$ # right, x will be a subscript
+
 ## Contributing
 
 To contribute a new stylesheet, follow these steps:
