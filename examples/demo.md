@@ -1,3 +1,7 @@
+---
+author: Aditya Bhargava
+title: All about chicken
+---
 # Just because
 ## my middle name
 

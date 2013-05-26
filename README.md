@@ -42,7 +42,7 @@ This creates a directory named `filename`. Start the presentation by opening up 
 	- Chicken
 	- Chicken Chicken
 
-Save that as `test.md` and then use `mdpress test.md` to convert it to a presentation. 
+Save that as `test.md` and then use `mdpress test.md` to convert it to a presentation.
 `mdpress` uses [Redcarpet](https://github.com/tanoku/redcarpet), so it can parse whatever markdown you throw at it.
 We use the horizonal rule, `---`, to indicate the start of a new slide.
 
@@ -94,7 +94,7 @@ Or specify a stylesheet to use with
 
 If you make your own stylesheets, send me a pull request and I'll add them to the list! See below.
 
-You can also create your own local theme: 
+You can also create your own local theme:
 
 1. Use the 'lib/impress_css/' files as a model to work from.
 2. Create a folder called 'themes' in the directory where your markdown
@@ -111,6 +111,7 @@ Someone emailed you a `mdpress` presentation. Now you want to **just run it**? S
 That will automatically compile the presentation and open it in a browser window.
 
 ## Latex Support
+
 mdpress now has Latex support through [MathJax](http://www.mathjax.org/). To build your presentation with latex support, use the `--latex` flag.
 
 Put your latex code between a pair of `$$`'s, like this:
@@ -122,6 +123,11 @@ Put your latex code between a pair of `$$`'s, like this:
 
     $a_x$ # wrong, x will be italic
     $a\_x$ # right, x will be a subscript
+
+## Metadata
+
+Metadata can be set via YAML-Frontmatter. Have a look at the examples
+for further information.
 
 ## Contributing
 
