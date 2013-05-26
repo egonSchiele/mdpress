@@ -6,6 +6,7 @@ require 'impress_renderer'
 require 'trollop'
 require 'tempfile'
 require 'launchy'
+require 'yaml'
 
 THEMES_DIRNAME = './themes/'
 
@@ -43,15 +44,23 @@ def readfile file
   end
 end
 
+def extract_metadata text
+  if md = text.match(/\A(---\s*\n.*?\n?)^(---\s*$\n?)/m)
+    [md.post_match, YAML.load(md[1])]
+  else
+    [text, {}]
+  end
+end
+
 def render opts
-  text = readfile(FILENAME)
+  text, metadata = extract_metadata(readfile(FILENAME))
   # ugly hack to get attributes for impress.js
   # TODO make this pretty
   lines = text.split("\n")
   lines.drop_while { |l| l =~ /^\s*$/ }
 
   attrs = [""]
-  
+
   new_lines = []
   lines.each_with_index do |line, i|
     if line =~ /^=(.*)$/ && (i == 0 || lines[i-1] =~ /^(-\s*){3,}$/)
@@ -69,10 +78,10 @@ def render opts
   # now use those attributes and render the file
   include Redcarpet
   ImpressRenderer.init_with_attrs attrs, opts
+  ImpressRenderer.author= metadata['author'] if metadata['author']
+  ImpressRenderer.title= metadata['title'] if metadata['title']
   if File.exist?(STYLESHEET_HEAD)
-    ImpressRenderer.set_head(File.read(STYLESHEET_HEAD))
-  else
-    ImpressRenderer.set_head("")
+    ImpressRenderer.head= File.read(STYLESHEET_HEAD)
   end
 
   m = Markdown.new(ImpressRenderer, :autolink => true, :fenced_code_blocks => true, :tables => true)
@@ -117,7 +126,7 @@ end
 if File.exist?(THEMES_DIRNAME + "#{OPTS[:stylesheet]}.css")
     STYLESHEET = THEMES_DIRNAME + "#{OPTS[:stylesheet]}.css"
     STYLESHEET_HEAD = THEMES_DIRNAME + "#{OPTS[:stylesheet]}.html"
-else 
+else
     STYLESHEET = base_dir + "impress_css/#{OPTS[:stylesheet]}.css"
     STYLESHEET_HEAD = base_dir + "impress_css/#{OPTS[:stylesheet]}.html"
 end

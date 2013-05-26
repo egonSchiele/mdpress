@@ -2,7 +2,7 @@ require 'redcarpet'
 class ImpressRenderer < Redcarpet::Render::HTML
   @@attrs = []
   @@current = 0
-  @@head = ""
+  @@author, @@head, @@title = nil
 
   def self.init_with_attrs _attrs, _opts
     @@attrs = _attrs
@@ -10,8 +10,16 @@ class ImpressRenderer < Redcarpet::Render::HTML
     @@opts = _opts
   end
 
-  def self.set_head head
+  def self.author= author
+    @@author = "<meta name=\"author\" content=\"#{author}\">"
+  end
+
+  def self.head= head
     @@head = head
+  end
+
+  def self.title= title
+    @@title = "<title>#{title}</title>"
   end
 
   def hrule
@@ -47,7 +55,9 @@ class ImpressRenderer < Redcarpet::Render::HTML
     %{<!DOCTYPE html>
 <html>
   <head>
+    #{@@title}
     <link href="css/reset.css" rel="stylesheet" />
+    #{@@author}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
