@@ -1,0 +1,28 @@
+PATH
+  remote: .
+  specs:
+    mdpress (0.0.14)
+      httparty
+      launchy
+      redcarpet
+      trollop
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.4)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    launchy (2.3.0)
+      addressable (~> 2.3)
+    multi_json (1.7.3)
+    multi_xml (0.5.3)
+    redcarpet (2.3.0)
+    trollop (2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mdpress!
