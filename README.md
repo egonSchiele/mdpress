@@ -126,8 +126,12 @@ Put your latex code between a pair of `$$`'s, like this:
 
 ## Metadata
 
-Metadata can be set via YAML-Frontmatter. Have a look at the examples
-for further information.
+Metadata can be set via YAML-Frontmatter. Have a look at the examples for further information. For example, if you want to set a title, put this at the top of the markdown file:
+
+    ---
+    title: All about chicken
+    ---
+  
 
 ## Contributing
 
