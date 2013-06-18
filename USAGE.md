@@ -35,7 +35,7 @@ To make it scale as well as swipe.
 ## Possible Attributes
 
 - `data-x`, `data-y`, `data-z`: positioning
-- `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate`: rotation (`data-rotate` and `data-rotate-z` are exactly the same)
+- `data-rotate-x`, `data-rotate-y`, `data-rotate-z`, `data-rotate`: rotation (`data-rotate` and `data-rotate-z` are exactly the same)
 - `data-scale`: scale
 - `id`: used as the slide link. For example, if you use `id=intro`, you can link to that slide using `index.html#/intro`.
 
@@ -65,11 +65,11 @@ If you make your own stylesheets, send me a pull request and I'll add them to th
 
 You can also create your own local theme:
 
-1. Use the 'lib/impress_css/' files as a model to work from.
-2. Create a folder called 'themes' in the directory where your markdown
-   file is. Inside it put the [yourtheme].css and [yourtheme].html files
-3. Call mdpress -s [yourtheme] and mdpress will look for the two theme
-   files in themes/ matching that name.
+1. Use the `lib/impress_css/` files as a model to work from.
+2. Create a folder called `themes` in the directory where your markdown
+   file is. Inside it put the `[yourtheme].css` and `[yourtheme].html` files
+3. Call `mdpress -s [yourtheme]` and mdpress will look for the two theme
+   files in `themes/` matching that name.
 
 ## Running a presentation
 
