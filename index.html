@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mdpress by egonSchiele</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mdpress</h1>
+        <p>Make impress.js presentations from markdown files.</p>
+
+        <p class="view"><a href="https://github.com/egonSchiele/mdpress">View the Project on GitHub <small>egonSchiele/mdpress</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/egonSchiele/mdpress/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/egonSchiele/mdpress/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/egonSchiele/mdpress">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a name="quickstart-writing-your-first-presentation" class="anchor" href="#quickstart-writing-your-first-presentation"><span class="octicon octicon-link"></span></a>Quickstart (writing your first presentation!)</h2>
+
+<pre><code># Chicken Chicken Chicken
+## By Chicken
+
+---
+
+# Chicken
+- Chicken
+- Chicken Chicken
+</code></pre>
+
+<p>Save that as <code>test.md</code> and then use <code>mdpress test.md</code> to convert it to a presentation.
+<code>mdpress</code> uses <a href="https://github.com/tanoku/redcarpet">Redcarpet</a>, so it can parse whatever markdown you throw at it.
+We use the horizonal rule, <code>---</code>, to indicate the start of a new slide.</p>
+
+<h2>
+<a name="getting-fancy-adding-transformations" class="anchor" href="#getting-fancy-adding-transformations"><span class="octicon octicon-link"></span></a>Getting Fancy: adding transformations</h2>
+
+<p>So far the slide transitions haven't been that exciting. Let's spice them up.
+Below the <code>---</code>, type:</p>
+
+<pre><code>= data-x="1000"
+</code></pre>
+
+<p>And re-compile with <code>mdpress test.md</code> (you might have to delete your old presentation directory first).</p>
+
+<p>Aha! Not bad! We specify transformations with <code>= [list of transformations]</code> as the first line of whatever slide we want to apply the transformation to.</p>
+
+<p>We could have written</p>
+
+<pre><code>= data-x="1000" data-scale="2"
+</code></pre>
+
+<p>To make it scale as well as swipe.</p>
+
+<h2>
+<a name="possible-attributes" class="anchor" href="#possible-attributes"><span class="octicon octicon-link"></span></a>Possible Attributes</h2>
+
+<ul>
+<li>
+<code>data-x</code>, <code>data-y</code>, <code>data-z</code>: positioning</li>
+<li>
+<code>data-rotate-x</code>, <code>data-rotate-y</code>, 'data-rotate-z<code>,</code>data-rotate<code>: rotation (</code>data-rotate<code>and</code>data-rotate-z` are exactly the same)</li>
+<li>
+<code>data-scale</code>: scale</li>
+<li>
+<code>id</code>: used as the slide link. For example, if you use <code>id=intro</code>, you can link to that slide using <code>index.html#/intro</code>.</li>
+</ul><p>See <a href="https://github.com/bartaz/impress.js/blob/master/index.html">impress.js</a> for a broader description of these.</p>
+
+<p>Adding this syntax to Markdown feels like kind of a hack, but it's concise. I'm open to suggestions for something better.</p>
+
+<h2>
+<a name="auto-update" class="anchor" href="#auto-update"><span class="octicon octicon-link"></span></a>Auto-update</h2>
+
+<p>Earlier, our workflow involved having to delete the old presentation and recompile every time we made an edit. The better choice is to use the automatic mode:</p>
+
+<pre><code>mdpress -a [filename.md]
+</code></pre>
+
+<p>Now, <code>mdpress</code> will keep running and check for updates to your markdown file. It will automatically recompile the presentation for you, so you can seamlessly edit your markdown and view your changes instantly.</p>
+
+<h2>
+<a name="stylesheets" class="anchor" href="#stylesheets"><span class="octicon octicon-link"></span></a>Stylesheets</h2>
+
+<p><code>mdpress</code> comes with a default stylesheet, plus a few more. See the full list of available stylesheets with</p>
+
+<pre><code>mdpress -l
+</code></pre>
+
+<p>Or specify a stylesheet to use with</p>
+
+<pre><code>mdpress -s [stylesheet]
+</code></pre>
+
+<p>If you make your own stylesheets, send me a pull request and I'll add them to the list! See below.</p>
+
+<p>You can also create your own local theme:</p>
+
+<ol>
+<li>Use the 'lib/impress_css/' files as a model to work from.</li>
+<li>Create a folder called 'themes' in the directory where your markdown
+file is. Inside it put the [yourtheme].css and [yourtheme].html files</li>
+<li>Call mdpress -s [yourtheme] and mdpress will look for the two theme
+files in themes/ matching that name.</li>
+</ol><h2>
+<a name="running-a-presentation" class="anchor" href="#running-a-presentation"><span class="octicon octicon-link"></span></a>Running a presentation</h2>
+
+<p>Someone emailed you a <code>mdpress</code> presentation. Now you want to <strong>just run it</strong>? Sure:</p>
+
+<pre><code>mdpress -r [filename.md]
+</code></pre>
+
+<p>That will automatically compile the presentation and open it in a browser window.</p>
+
+<h2>
+<a name="latex-support" class="anchor" href="#latex-support"><span class="octicon octicon-link"></span></a>Latex Support</h2>
+
+<p>mdpress now has Latex support through <a href="http://www.mathjax.org/">MathJax</a>. To build your presentation with latex support, use the <code>--latex</code> flag.</p>
+
+<p>Put your latex code between a pair of <code>$$</code>'s, like this:</p>
+
+<pre><code># Latex!
+$$e^{\imath\pi} = -1$$
+</code></pre>
+
+<p><strong>Note</strong>: you might run into conflicts between markdown and latex. For example, <code>_</code> means emphasize in markdown. So if you want subscripts, escape <code>_</code>:</p>
+
+<pre><code>$a_x$ # wrong, x will be italic
+$a\_x$ # right, x will be a subscript
+</code></pre>
+
+<h2>
+<a name="metadata" class="anchor" href="#metadata"><span class="octicon octicon-link"></span></a>Metadata</h2>
+
+<p>Metadata can be set via YAML-Frontmatter. Have a look at the examples for further information. For example, if you want to set a title, put this at the top of the markdown file:</p>
+
+<pre><code>---
+title: All about chicken
+---
+</code></pre>
+
+<p>That's it!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/egonSchiele">egonSchiele</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
