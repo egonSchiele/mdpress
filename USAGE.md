@@ -1,3 +1,5 @@
+[mdpress](https://github.com/egonSchiele/mdpress) is a tool for making HTML presentations for Markdown. Here's how it works:
+
 ## Quickstart (writing your first presentation!)
 
 	# Chicken Chicken Chicken
@@ -99,3 +101,4 @@ Metadata can be set via YAML-Frontmatter. Have a look at the examples for furthe
     title: All about chicken
     ---
 
+[See the project on Github](https://github.com/egonSchiele/mdpress).
