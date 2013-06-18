@@ -32,7 +32,7 @@ This creates a directory named `filename`. Start the presentation by opening up 
 
 [See full usage](http://egonschiele.github.io/mdpress/) (it's easy!).
 
-## mdpress in the wild
+## Mdpress in the wild
 
 - There's a [debian package](http://ftp-master.debian.org/new/mdpress_0.0.14+debian-1.html) in progress.
 - Here's a [Yeoman generator](https://github.com/btholt/generator-mdpress) for mdpress.
@@ -52,4 +52,4 @@ To contribute a new stylesheet, follow these steps:
 - [kmlawson](https://github.com/kmlawson)
 - [guidokessels](https://github.com/guidokessels)
 
-Copyright (C) 2012 by Aditya Bhargava (MIT license)
+Copyright (C) 2013 by Aditya Bhargava (MIT license)
