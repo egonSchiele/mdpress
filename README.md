@@ -1,6 +1,6 @@
 # mdpress
 
-This is a tool that converts markdown files to presentations using impress.
+This is a tool that converts markdown files to presentations using [impress.js](https://github.com/bartaz/impress.js/).
 
 # Example
 
