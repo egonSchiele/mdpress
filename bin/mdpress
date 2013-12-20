@@ -84,7 +84,7 @@ def render opts
     ImpressRenderer.head= File.read(STYLESHEET_HEAD)
   end
 
-  m = Markdown.new(ImpressRenderer, :autolink => true, :fenced_code_blocks => true, :tables => true)
+  m = Markdown.new(ImpressRenderer, :autolink => true, :fenced_code_blocks => true, :tables => true, :strikethrough => true)
   log "rendering presentation"
   f = File.open(DIRNAME + "/index.html", "w+")
   f.write(m.render(text))
@@ -102,6 +102,7 @@ EOS
   opt :run, "Run presentation (automatically compiles to a tmp directory and opens in a browser window)"
   opt :latex, "Provide Latex support"
   opt :verbose, "Be verbose."
+  opt :images, "Directory of images for the presentation", :type => :string
 end
 
 if OPTS[:list]
@@ -144,6 +145,16 @@ if File.exist?(DIRNAME)
 else
   log "making directory"
   Dir.mkdir(DIRNAME)
+end
+
+if OPTS[:images]
+  if Dir.exist?(OPTS[:images])
+    FileUtils.cp_r(OPTS[:images], File.join(DIRNAME, OPTS[:images]))
+    log "copy the images into the presentation"
+  else
+    puts "'#{OPTS[:images]}' is not a valid directory."
+    exit
+  end
 end
 
 render OPTS
