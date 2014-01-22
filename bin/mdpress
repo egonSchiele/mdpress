@@ -148,7 +148,7 @@ else
 end
 
 if OPTS[:images]
-  if Dir.exist?(OPTS[:images])
+  if File.directory?(OPTS[:images])
     FileUtils.cp_r(OPTS[:images], File.join(DIRNAME, OPTS[:images]))
     log "copy the images into the presentation"
   else
