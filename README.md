@@ -34,7 +34,7 @@ This creates a directory named `filename`. Start the presentation by opening up 
 
 ## Mdpress in the wild
 
-- There's a [debian package](http://ftp-master.debian.org/new/mdpress_0.0.14+debian-1.html) in progress.
+- There's a [debian package](http://packages.qa.debian.org/m/mdpress.html) available.
 - Here's a [Yeoman generator](https://github.com/btholt/generator-mdpress) for mdpress.
 
 ## Contributing
