@@ -84,7 +84,7 @@ def render opts
     ImpressRenderer.head= File.read(STYLESHEET_HEAD)
   end
 
-  m = Markdown.new(ImpressRenderer, :autolink => true, :fenced_code_blocks => true, :tables => true, :strikethrough => true)
+  m = Markdown.new(ImpressRenderer, :autolink => true, :fenced_code_blocks => true, :tables => true, :strikethrough => true, :superscript => true)
   log "rendering presentation"
   f = File.open(DIRNAME + "/index.html", "w+")
   f.write(m.render(text))
