@@ -1,5 +1,3 @@
-/* created from default.css, changing font size and types; also background color to something less, well, gray */
-
 @import url(http://fonts.googleapis.com/css?family=Josefin+Slab);
 @import url(http://fonts.googleapis.com/css?family=Merriweather);
 @import url(http://fonts.googleapis.com/css?family=Nova+Mono);
@@ -70,10 +68,10 @@ h1, h2 {
 
 h1 {
     color: yellow;
-        font-family: 'Josephin Slab',serif;
-	font-size: 2.5em;
-	margin: 20px 0;
-	line-height: 1.2em;
+    font-family: 'Josefin Slab', serif;
+    font-size: 3em;
+    margin: 20px 0;
+    line-height: 1.2em;
 }
 
 h2 {
