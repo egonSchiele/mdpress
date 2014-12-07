@@ -1,5 +1,7 @@
 # mdpress
 
+**This project is looking for a new maintainer!** If you are interested, please send me a message. In the meantime, I will continue accepting merge requests but I won't be fixing bugs.
+
 This is a tool that converts markdown files to presentations using [impress.js](https://github.com/bartaz/impress.js/).
 
 # Example
@@ -36,14 +38,6 @@ This creates a directory named `filename`. Start the presentation by opening up 
 
 - There's a [debian package](http://packages.qa.debian.org/m/mdpress.html) available.
 - Here's a [Yeoman generator](https://github.com/btholt/generator-mdpress) for mdpress.
-
-## Contributing
-
-To contribute a new stylesheet, follow these steps:
-
-1. Fork this repo.
-2. Place your new stylesheet in `lib/impress_css/[your stylesheet name].css`
-3. Send me a pull request!
 
 ## Contributors
 
