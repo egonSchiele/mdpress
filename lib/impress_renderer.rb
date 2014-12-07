@@ -31,6 +31,8 @@ class ImpressRenderer < Redcarpet::Render::HTML
   end
 
   def block_code code, lang
+    code.gsub!("<", "&lt;")
+    code.gsub!(">", "&gt;")
     "<pre><code class='prettyprint #{lang}'>#{code}</code></pre>"
   end
 
